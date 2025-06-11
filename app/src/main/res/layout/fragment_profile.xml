@@ -34,7 +34,7 @@
     <EditText
         android:id="@+id/txtname"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_below="@+id/LL"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="50dp"
@@ -44,6 +44,8 @@
         android:textColorHint="@color/black"
         android:textSize="20sp"
         android:textColor="#212121"
+        android:maxLines="2"
+        android:drawableLeft="@drawable/baseline_person_24"
         />
     <Space
         android:id="@+id/space1"
@@ -54,7 +56,7 @@
     <EditText
         android:id="@+id/txtphone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_below="@+id/space1"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
@@ -63,7 +65,9 @@
         android:background="#fff3e0"
         android:hint="Enter the phone number"
         android:textColorHint="@color/black"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:maxLines="1"
+        android:drawableLeft="@drawable/baseline_local_phone_24"/>
     <Space
         android:id="@+id/space2"
         android:layout_below="@+id/txtphone"
@@ -73,7 +77,7 @@
     <EditText
         android:id="@+id/txtemail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_below="@+id/space2"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
@@ -82,7 +86,9 @@
         android:background="#fff3e0"
         android:hint="Enter the Email"
         android:textColorHint="@color/black"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:maxLines="2"
+        android:drawableLeft="@drawable/baseline_email_24"/>
 
     <Space
         android:id="@+id/space3"
