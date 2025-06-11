@@ -1,5 +1,6 @@
 package com.subhajeet.bookhub.fragment
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.PickVisualMediaRequest
@@ -24,9 +26,15 @@ class ProfileFragment : Fragment() {
 
     lateinit var imageViewProfile: ImageView
     lateinit var btnAdd:Button
-    lateinit var txtname: TextView
-    lateinit var txtphone: TextView
-    lateinit var txtemail: TextView
+    lateinit var btnSave:Button
+    lateinit var txtname: EditText
+    lateinit var txtphone: EditText
+    lateinit var txtemail: EditText
+
+    private val PREFS_NAME = "ProfilePrefs"
+    private val PROFILE_NAME_KEY = "profileName"
+    private val PROFILE_PHONE_KEY = "profilePhone"
+    private val PROFILE_EMAIL_KEY = "profileEmail"
 
     // File name for the saved image
     private val IMAGE_FILE_NAME = "profile_image.png"
@@ -55,6 +63,7 @@ class ProfileFragment : Fragment() {
 
         imageViewProfile = view.findViewById(R.id.imageViewProfile)
         btnAdd = view.findViewById(R.id.btnAdd)
+        btnSave=view.findViewById(R.id.btnSave)
 
         txtname = view.findViewById(R.id.txtname)
         txtphone = view.findViewById(R.id.txtphone)
@@ -69,6 +78,14 @@ class ProfileFragment : Fragment() {
         btnAdd.setOnClickListener {
             //pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
             showAccessGalleryConfirmation()
+        }
+
+        // Load saved data into EditText
+        loadProfileData()
+
+        // Save data when the button is clicked
+        btnSave.setOnClickListener {
+            saveProfileData(txtname.text.toString(), txtphone.text.toString(), txtemail.text.toString())
         }
 
 
@@ -120,6 +137,28 @@ class ProfileFragment : Fragment() {
             e.printStackTrace()
             null
         }
+    }
+
+    private fun saveProfileData(name: String, phone: String, email: String)  {
+        // Save data in SharedPreferences
+        val sharedPreferences = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString(PROFILE_NAME_KEY, name)
+        editor.putString(PROFILE_PHONE_KEY, phone)
+        editor.putString(PROFILE_EMAIL_KEY, email)
+        editor.apply()
+    }
+
+    private fun loadProfileData() {
+        // Retrieve data from SharedPreferences
+        val sharedPreferences = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val savedName = sharedPreferences.getString(PROFILE_NAME_KEY, "")
+        val savedPhone = sharedPreferences.getString(PROFILE_PHONE_KEY, "")
+        val savedEmail = sharedPreferences.getString(PROFILE_EMAIL_KEY, "")
+
+        txtname.setText(savedName)
+        txtphone.setText(savedPhone)
+        txtemail.setText(savedEmail)
     }
 
 }
