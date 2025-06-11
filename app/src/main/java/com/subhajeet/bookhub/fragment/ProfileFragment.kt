@@ -1,20 +1,19 @@
 package com.subhajeet.bookhub.fragment
 
-import android.content.Context
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import com.subhajeet.bookhub.R
 import java.io.File
 import java.io.FileOutputStream
@@ -25,6 +24,9 @@ class ProfileFragment : Fragment() {
 
     lateinit var imageViewProfile: ImageView
     lateinit var btnAdd:Button
+    lateinit var txtname: TextView
+    lateinit var txtphone: TextView
+    lateinit var txtemail: TextView
 
     // File name for the saved image
     private val IMAGE_FILE_NAME = "profile_image.png"
@@ -54,6 +56,9 @@ class ProfileFragment : Fragment() {
         imageViewProfile = view.findViewById(R.id.imageViewProfile)
         btnAdd = view.findViewById(R.id.btnAdd)
 
+        txtname = view.findViewById(R.id.txtname)
+        txtphone = view.findViewById(R.id.txtphone)
+        txtemail = view.findViewById(R.id.txtemail)
 
         // Load the saved image if it exists
         loadImageFromInternalStorage()?.let {
