@@ -62,9 +62,28 @@ class ProfileFragment : Fragment() {
 
 
         btnAdd.setOnClickListener {
-            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+            //pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+            showAccessGalleryConfirmation()
         }
+
+
         return view
+    }
+
+    private fun showAccessGalleryConfirmation() {
+        val builder = android.app.AlertDialog.Builder(requireContext())
+        builder.setTitle("Gallery")
+        builder.setMessage("Are you sure you want to give access to your Gallery?")
+        builder.setPositiveButton("Yes") { _, _ ->
+
+                pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+
+        }
+        builder.setNegativeButton("No") { dialog, _ ->
+            // Dismiss the dialog
+            dialog.dismiss()
+        }
+        builder.create().show()
     }
 
 
