@@ -196,7 +196,7 @@ class DescriptionActivity : AppCompatActivity() {
                     override fun getHeaders(): MutableMap<String, String> {
                         val headers = HashMap<String, String>()
                         headers["Content-type"] = "application/json"
-                        headers["token"] = "8c6b73e37020cd"
+                        headers["token"] = getString(R.string.Security_Key)   //We can also give the token as  headers["token"] = "Token"  ,For security reason had changed
                         return headers
                     }
 
